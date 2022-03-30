@@ -43,7 +43,7 @@ class RandomChar extends Component {
     // updateDesc =()=> {
     //     let description = this.state.description; 
 
-    //     if( description  ){
+    //     if( !description == null  ){
     //         return  description.slice(0,150)
           
     //     }
