@@ -4,8 +4,8 @@ import '../../components/spinner/style.scss'
 
 const Spinner = () => {
   return (
-    <div>
-        <img className='spinner' src={spinner} alt="spinner" />
+    <div className='spinner'>
+        <img  src={spinner} alt="spinner" />
     </div>
   )
 }
