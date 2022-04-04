@@ -1,5 +1,5 @@
 import React from 'react'
-import spinner from '../../resources/img/loading-36.gif'
+import spinner from '../../resources/img/spinner-1.gif'
 import '../../components/spinner/style.scss'
 
 const Spinner = () => {
