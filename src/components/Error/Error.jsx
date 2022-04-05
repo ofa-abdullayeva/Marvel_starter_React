@@ -1,11 +1,11 @@
 import React from 'react'
-import error from '../../resources/img/error.gif'
+import error2 from '../../resources/img/error2.gif'
 import '../../components/Error/error.scss'
 
 const Error = () => {
     return (
         <div className='error'>
-            <img src={error} alt="error" />
+            <img src={error2} alt="error" />
         </div>
     )
 }

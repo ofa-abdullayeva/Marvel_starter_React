@@ -15,11 +15,20 @@ class RandomChar extends Component {
             loading: true,
             error: false
         }
-
-        this.updateCharacter();
+        //setInterval(this.updateCharacter,3000)
+       
     }
 
     marvelService = new MarvelServices();
+
+    componentDidMount(){
+        this.updateCharacter()
+      this.timerId = setInterval(this.updateCharacter,3000)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timerId)
+    }
 
     onCharLoaded = (char) => {
         this.setState({ char: char, loading: false })
@@ -30,10 +39,12 @@ class RandomChar extends Component {
     }
 
     updateCharacter = () => {
+        console.log("update")
         const id = Math.floor(Math.random() * (1011400 - 1011000 + 1) + 1011000);
         this.marvelService.getCharacter(id)
             .then(this.onCharLoaded)
             .catch(this.onError)
+        
     }
 
     render() {
@@ -80,12 +91,14 @@ const View = ({ char }) => {
                     {description}
                 </p>
                 <div className="randomchar__btns">
+
                     <a href={homepage} className="button button__main">
                         <div className="inner">Homepage</div>
                     </a>
                     <a href={wiki} className="button button__secondary">
                         <div className="inner">Wiki</div>
                     </a>
+
                 </div>
             </div>
         </div>
