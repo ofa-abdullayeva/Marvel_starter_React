@@ -44,7 +44,7 @@ class CharList extends Component {
     }
 
     renderedItems(arr) {
-        const renderedItems = arr.map(item => {
+        const renderedArr = arr.map(item => {
             let imageStyle = { 'objectFit': 'cover' };
             if (item.thumbnail.includes('image_not_available')) {
                 imageStyle = { 'objectFit': 'unset' };
@@ -64,7 +64,7 @@ class CharList extends Component {
         });
         return (
             <ul className="char__grid">
-                {renderedItems}
+                {renderedArr}
             </ul>
         )
     }

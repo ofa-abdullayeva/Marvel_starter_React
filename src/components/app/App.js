@@ -6,41 +6,34 @@ import CharInfo from "../charInfo/CharInfo";
 import decoration from '../../resources/img/vision.png';
 import { Component } from "react/cjs/react.production.min";
 
+
 class App extends Component {
 
-
     state = {
-        showRandomChar: true
+        selectedChar: null
     }
 
 
+    onCharSelected = (id) => {
+        this.setState({
 
-    toggleRondomChar=() => {
-        this.setState((state)=>{
-            return{
-                showRandomChar: !this.state.showRandomChar
-            }
+            selectedChar: id
+
         })
-        console.log(this.state)
     }
-
-
-
 
     render() {
-       //console.log(this.toggleRondomChar)
+      
         return (
             <div className="app">
+
                 <AppHeader />
+
                 <main>
                     <RandomChar />
-                    {/* {this.state.showRandomChar ? <RandomChar /> : null} */}
-                    {/* <button
-                        onClick={this.toggleRondomChar}
-                    >clik me</button> */}
                     <div className="char__content">
-                        <CharList />
-                        <CharInfo />
+                        <CharList onCharSelected={this.onCharSelected}/>
+                        <CharInfo charId={this.state.selectedChar} />
                     </div>
                     <img className="bg-decoration" src={decoration} alt="vision" />
                 </main>
