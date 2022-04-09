@@ -15,6 +15,7 @@ class RandomChar extends Component {
             loading: true,
             error: false
         }
+        //console.log('constructor')
         //setInterval(this.updateCharacter,3000)
        
     }
@@ -22,16 +23,22 @@ class RandomChar extends Component {
     marvelService = new MarvelServices();
 
     componentDidMount(){
+        //console.log('Mounted')
         this.updateCharacter()
-      this.timerId = setInterval(this.updateCharacter,3000)
+     //this.timerId = setInterval(this.updateCharacter,3000)
     }
 
-    componentWillUnmount(){
-        clearInterval(this.timerId)
-    }
+    // componentWillUnmount(){
+    //     console.log('unMounted')
+    //     clearInterval(this.timerId)
+    // }
 
     onCharLoaded = (char) => {
         this.setState({ char: char, loading: false })
+    }
+
+    onCharLoading = () => {
+        this.setState({ loading: true })
     }
 
     onError = () =>{
@@ -39,8 +46,9 @@ class RandomChar extends Component {
     }
 
     updateCharacter = () => {
-        console.log("update")
+        //console.log("update")
         const id = Math.floor(Math.random() * (1011400 - 1011000 + 1) + 1011000);
+        this.onCharLoading()
         this.marvelService.getCharacter(id)
             .then(this.onCharLoaded)
             .catch(this.onError)
@@ -48,6 +56,7 @@ class RandomChar extends Component {
     }
 
     render() {
+        //console.log('render')
         const { char, loading, error} = this.state;
         const errorMesage = error? <Error/> :null
         const spinner = loading? <Spinner/>:null
@@ -70,7 +79,9 @@ class RandomChar extends Component {
                     <p className="randomchar__title">
                         Or choose another one
                     </p>
-                    <button className="button button__main">
+                    <button
+                     className="button button__main"
+                     onClick={this.updateCharacter}>
                         <div className="inner">try it</div>
                     </button>
                     <img src={mjolnir} alt="mjolnir" className="randomchar__decoration" />

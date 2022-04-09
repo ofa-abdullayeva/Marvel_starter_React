@@ -28,15 +28,16 @@ class App extends Component {
 
 
     render() {
-        console.log(this.toggleRondomChar)
+       //console.log(this.toggleRondomChar)
         return (
             <div className="app">
                 <AppHeader />
                 <main>
-                    {this.state.showRandomChar ? <RandomChar /> : null}
-                    <button
+                    <RandomChar />
+                    {/* {this.state.showRandomChar ? <RandomChar /> : null} */}
+                    {/* <button
                         onClick={this.toggleRondomChar}
-                    >clik me</button>
+                    >clik me</button> */}
                     <div className="char__content">
                         <CharList />
                         <CharInfo />
