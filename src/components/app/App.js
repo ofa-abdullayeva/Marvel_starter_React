@@ -5,6 +5,7 @@ import CharInfo from "../charInfo/CharInfo";
 
 import decoration from '../../resources/img/vision.png';
 import { Component } from "react/cjs/react.production.min";
+import ErrorBoundary from "../errorBaundary/ErrorBoundary";
 
 
 class App extends Component {
@@ -33,7 +34,9 @@ class App extends Component {
                     <RandomChar />
                     <div className="char__content">
                         <CharList onCharSelected={this.onCharSelected}/>
+                        <ErrorBoundary>
                         <CharInfo charId={this.state.selectedChar} />
+                        </ErrorBoundary>
                     </div>
                     <img className="bg-decoration" src={decoration} alt="vision" />
                 </main>

@@ -13,27 +13,46 @@ class CharList extends Component {
     state = {
         characters: [],
         loading: true,
-        error: false
+        error: false,
+        newItemLoading: false,
+        offset: 202
     }
 
     marvelService = new MarvelServices();
 
-    getCharacList = () => {
+
+    onCharListLoading = (chars) => {
+        this.setState({
+         newItemLoading:true,
+        })
+    }
+    // getCharacList = () => {
+    //     this.marvelService
+    //         .getAllCharacters()
+    //         .then(this.onCharListLoaded)
+    //         .catch(this.onError)
+    // }
+
+    componentDidMount() {
+        // this.getCharacList();
+        this.onRequest()
+    }
+
+    onRequest =(offset)=>{
+        this.onCharListLoading()
         this.marvelService
-            .getAllCharacters()
+            .getAllCharacters(offset)
             .then(this.onCharListLoaded)
             .catch(this.onError)
     }
 
-    componentDidMount() {
-        this.getCharacList();
-    }
-
     onCharListLoaded = (chars) => {
-        this.setState({
-            characters: chars,
-            loading: false
-        })
+        this.setState(({characters, offset})=>({
+            characters: [...characters,...chars],
+            loading:false,
+            newItemLoading:false,
+            offset: offset + 9
+        }))
     }
 
     onError = () => {
@@ -71,7 +90,7 @@ class CharList extends Component {
 
 
     render() {
-        const { characters, error, loading } = this.state;
+        const { characters, error, loading ,newItemLoading, offset} = this.state;
         const items = this.renderedItems(characters);
         const errorMesage = error ? <Error/> : null;
         const spinner = loading ? <Spinner /> : null;
@@ -82,6 +101,8 @@ class CharList extends Component {
                 {spinner}
                 {content}
                 <button
+                disabled= {newItemLoading}
+                onClick = {()=>{this.onRequest(offset)}}
                     className="button button__main button__long">
                     <div className="inner">load more</div>
                 </button>
