@@ -23,6 +23,9 @@ class CharInfo extends Component {
         this.updateChar()
     }
 
+    // componentDidCatch(err,info){
+    //     console.log(err,info)
+    // }
 
   
 
