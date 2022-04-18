@@ -15,7 +15,7 @@ class CharList extends Component {
         loading: true,
         error: false,
         newItemLoading: false,
-        offset: 1530,
+        offset: 1540,
         charEnded:false
     }
 
@@ -61,6 +61,7 @@ class CharList extends Component {
             charEnded: endded
         }))
     }
+ 
 
     onError = () => {
         this.setState({
@@ -110,7 +111,7 @@ class CharList extends Component {
                 <button
                 disabled= {newItemLoading}
                 onClick = {()=>{this.onRequest(offset)}}
-                style = {{'display':charEnded? 'none': 'block'}}
+                style = {{ 'display' : charEnded ? 'none': 'block' }}
                     className="button button__main button__long">
                     <div className="inner">load more</div>
                 </button>

@@ -94,3 +94,7 @@
 .button:hover {
   transform: translateY(-5px);
 }
+
+.button:disabled {
+  opacity: 0.3;
+}

@@ -96,6 +96,10 @@
   transform: translateY(-5px);
 }
 
+.button:disabled {
+  opacity: 0.3;
+}
+
 * {
   font-family: "Roboto Condensed", sans-serif;
   margin: 0;
