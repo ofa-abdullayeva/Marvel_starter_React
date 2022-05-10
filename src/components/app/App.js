@@ -1,12 +1,12 @@
+import { useState  } from 'react';
+
 import AppHeader from "../appHeader/AppHeader";
 import RandomChar from "../randomChar/RandomChar";
 import CharList from "../charList/CharList";
 import CharInfo from "../charInfo/CharInfo";
 
 import decoration from '../../resources/img/vision.png';
-import { useState  } from "react/cjs/react.production.min";
 import ErrorBoundary from "../errorBaundary/ErrorBoundary";
-
 
 const App = () => {
     const[selectedChar , setSelectedChar] = useState(null)

@@ -92,6 +92,7 @@ const CharList =(props) => {
         //     loading: false
         // })
     }
+    const itemRefs = useRef([])
 
     const renderedItems = (arr) => {
         const renderedArr = arr.map((item,i) => {
@@ -102,7 +103,7 @@ const CharList =(props) => {
             return (
                 <li
                     key={item.id}
-                    ref={}
+                    ref={(elem) => itemRefs.current[i] = elem}
                     onClick={() => props.onCharSelected(item.id)}
                     className="char__item">
                     <img
@@ -123,7 +124,7 @@ const CharList =(props) => {
 
 
         
-        const items = this.renderedItems(characters);
+        const items = renderedItems(characters);
         const errorMesage = error ? <Error/> : null;
         const spinner = loading ? <Spinner /> : null;
         const content = !(loading || error) ? items : null;
