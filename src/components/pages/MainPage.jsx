@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react'
 import CharInfo from '../charInfo/CharInfo';
 import CharList from '../charList/CharList';
-import Errorboundary from '../errorBoundary/ErrorBoundary';
+import Errorboundary from '../errorBaundary/ErrorBoundary';
 import RandomChar from '../randomChar/RandomChar';
 import decoration from '../../resources/img/vision.png';
 
