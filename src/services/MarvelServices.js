@@ -1,8 +1,10 @@
 
+// d296322b2836e49e16a304afca30b0ac
 
+//http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150
 class MarvelServices {
     _apiBase = 'http://gateway.marvel.com/v1/public/';
-    _apiKey = 'ts=1&apikey=98959f60d7f5ef6df2ca3b7134f2480d&hash=ca2eb543f5b2393894d5651aad8a2a00'
+    _apiKey = 'ts=1&apikey=0d246aafc44df77098e7f7f3ff6020c4&hash=d296322b2836e49e16a304afca30b0ac'
     _baseOffset = 200
     getResource = async (url) => {
   

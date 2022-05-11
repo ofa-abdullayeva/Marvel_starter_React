@@ -14,7 +14,7 @@ const CharList =(props) => {
     const [loading,setLoading] = useState(true)
     const [error,setError] = useState(false)
     const [newItemLoading,setNewItemLoading] = useState(false)
-    const [offset,setOffset] = useState(1540)
+    const [offset,setOffset] = useState(205)
     const [charEnded,setCharEnded] = useState(false)
 
     // state = {
@@ -45,8 +45,9 @@ const CharList =(props) => {
     //         .catch(this.onError)
     // }
     useEffect(()=>{
-        onRequest()
-    })
+        onRequest();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
     // componentDidMount() {
     //     // this.getCharacList();
     //     this.onRequest()
@@ -92,7 +93,13 @@ const CharList =(props) => {
         //     loading: false
         // })
     }
-    const itemRefs = useRef([])
+    const itemsRefs = useRef([])
+
+    const focusOnItem = (id) =>{
+        itemsRefs.current.forEach(item => item.classList.remove("char__item_selected"))
+        itemsRefs.current[id].classList.add("char__item_selected");
+        itemsRefs.current[id].focus();
+    }
 
     const renderedItems = (arr) => {
         const renderedArr = arr.map((item,i) => {
@@ -103,8 +110,11 @@ const CharList =(props) => {
             return (
                 <li
                     key={item.id}
-                    ref={(elem) => itemRefs.current[i] = elem}
-                    onClick={() => props.onCharSelected(item.id)}
+                    ref={(elem) => itemsRefs.current[i] = elem}
+                    onClick={() => {
+                        props.onCharSelected(item.id)
+                        focusOnItem(i)
+                    }}
                     className="char__item">
                     <img
                         src={item.thumbnail}

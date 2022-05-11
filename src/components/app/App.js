@@ -10,20 +10,14 @@ import ErrorBoundary from "../errorBaundary/ErrorBoundary";
 
 const App = () => {
     const[selectedChar , setSelectedChar] = useState(null)
-    // state = {
-    //     selectedChar: null
-    // }
-
+    
 
     const onCharSelected = (id) => {
 
        setSelectedChar( id) 
 
-    
     }
 
-   
-      
         return (
             <div className="app">
 
