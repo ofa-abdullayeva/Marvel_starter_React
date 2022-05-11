@@ -1,41 +1,59 @@
-import { useState  } from 'react';
+import { useState } from 'react';
 
 import AppHeader from "../appHeader/AppHeader";
 import RandomChar from "../randomChar/RandomChar";
+import {
+    Switch,
+    Route,
+    
+} from "react-router-dom";
 import CharList from "../charList/CharList";
 import CharInfo from "../charInfo/CharInfo";
 
 import decoration from '../../resources/img/vision.png';
 import ErrorBoundary from "../errorBaundary/ErrorBoundary";
+import ComicsList from '../comicsList/ComicsList';
+import AppBanner from '../appBanner/AppBanner';
 
 const App = () => {
-    const[selectedChar , setSelectedChar] = useState(null)
-    
+    const [selectedChar, setSelectedChar] = useState(null)
+
 
     const onCharSelected = (id) => {
 
-       setSelectedChar( id) 
+        setSelectedChar(id)
 
     }
 
-        return (
-            <div className="app">
+    return (
+        <div className="app">
 
-                <AppHeader />
+            <AppHeader />
 
-                <main>
-                    <RandomChar />
-                    <div className="char__content">
-                        <CharList onCharSelected={onCharSelected}/>
-                        <ErrorBoundary>
-                        <CharInfo charId={selectedChar} />
-                        </ErrorBoundary>
-                    </div>
-                    <img className="bg-decoration" src={decoration} alt="vision" />
-                </main>
-            </div>
-        )
-    }
+            <main>
+                <Switch>
+                    <Route exact path="/">
+                        <RandomChar />
+                        <div className="char__content">
+                            <CharList onCharSelected={onCharSelected} />
+                            <ErrorBoundary>
+                                <CharInfo charId={selectedChar} />
+                            </ErrorBoundary>
+                        </div>
+                        <img className="bg-decoration" src={decoration} alt="vision" />
+                    </Route>
+
+                    <Route path="/comics">
+                        <AppBanner />
+                        <ComicsList />
+                    </Route>
+
+                </Switch >
+            </main>
+
+        </div>
+    )
+}
 
 
 export default App;

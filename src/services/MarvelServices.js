@@ -38,6 +38,28 @@ class MarvelServices {
         comics: character.comics.items
       }
     }
+
+    getAllComics = async (offset = 0) => {
+      const res = await this.getResource(`${this._apiBase}comics?orderBy=issueNumber&limit=8&offset=${offset}&${this._apiKey}`);
+      return res.data.results.map(item => this._transformComics(item));
+    }
+  
+    getComics = async (id) => {
+      const res = await this.getResource(`${this._apiBase}comics/${id}?${this._apiKey}`);
+      return this._transformComics(res.data.results[0]);
+    }
+  
+    _transformComics = (comics) => {
+      return {
+        id: comics.id,
+        title: comics.title,
+        description: comics.description || "There is no description",
+        pageCount: comics.pageCount ? `${comics.pageCount} p.` : "No information about the number of pages",
+        thumbnail: comics.thumbnail.path + "." + comics.thumbnail.extension,
+        language: comics.textObjects.language || "en-us",
+        price: comics.prices.price ? `${comics.prices.price}$` : "not available"
+      }
+    }
   }
   
   export default MarvelServices;
